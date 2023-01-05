@@ -5,7 +5,10 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -13,8 +16,10 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.app.matrimony.enumaration.Status;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -52,9 +57,9 @@ public class RecordModifier implements Serializable {
 	@Column(name="deleted_by")
 	private	String deletedBy;
 //	
-//	@NotNull(message = "Status cannot be blank")
-//    @ApiModelProperty(value = "Valid status", required = true, allowableValues = "ACTIVE, INACTIVE")
-//	@Enumerated(EnumType.STRING)
-//	@Column(name="status")
-//	private Status status= Status.ACTIVE;
+	@NotNull(message = "Status cannot be blank")
+    @ApiModelProperty(value = "Valid status", required = true, allowableValues = "ACTIVE, INACTIVE")
+	@Enumerated(EnumType.STRING)
+	@Column(name="status")
+	private Status status= Status.ACTIVE;
 }
