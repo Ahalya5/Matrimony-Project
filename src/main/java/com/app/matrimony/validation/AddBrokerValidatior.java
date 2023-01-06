@@ -86,7 +86,7 @@ public ValidationResult validate(RequestType requestType,AddBrokerDTO request) {
 		} else {
 			request.setEmail(ValidationUtil.getFormattedString(request.getEmail()));
 			if (!ValidationUtil.isValidEmailId(request.getEmail())) {
-				errors.add(messageSource.getMessage("user.email.invalid"));
+				errors.add(messageSource.getMessage("email.invalid"));
 			}
 		}
 		
@@ -114,7 +114,12 @@ public ValidationResult validate(RequestType requestType,AddBrokerDTO request) {
 			addBrokerDetails = addBrokerDetails.builder().id(request.getId()).firstName(request.getFirstName())
 					           .lastName(request.getLastName()).mobileNumber(request.getMobileNumber()).
 					           email(request.getEmail()).addressLine1(request.getAddressLine1())
-					           .addressLine2(request.getAddressLine2()).build();
+					           .addressLine2(request.getAddressLine2()).city(request.getCity())
+					           .state(request.getState())
+					           .country(request.getCountry())
+					           
+					           
+					           .build();
 		}else {
 		addBrokerDetails.setFirstName(request.getFirstName());
 		addBrokerDetails.setLastName(request.getLastName());
@@ -122,6 +127,10 @@ public ValidationResult validate(RequestType requestType,AddBrokerDTO request) {
 		addBrokerDetails.setAddressLine1(request.getAddressLine1());
 		addBrokerDetails.setAddressLine2(request.getAddressLine2());
 		addBrokerDetails.setEmail(request.getEmail());
+		addBrokerDetails.setCity(request.getCity());
+		addBrokerDetails.setState(request.getState());
+		addBrokerDetails.setCountry(request.getCountry());
+		
 		
 		}
 		result.setObject(addBrokerDetails);
