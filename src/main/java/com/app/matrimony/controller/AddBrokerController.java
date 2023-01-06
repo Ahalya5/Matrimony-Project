@@ -56,7 +56,7 @@ public class AddBrokerController {
 		addBrokerService.saveOrUpdate((AddBroker)(validationResult.getObject()));
 
 		try {
-			return responseGenerator.successResponse(context, messageSource.getMessage("broker.created"), HttpStatus.OK);
+			return responseGenerator.successResponse(context, messageSource.getMessage("broker.create"), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error(e.getMessage());
