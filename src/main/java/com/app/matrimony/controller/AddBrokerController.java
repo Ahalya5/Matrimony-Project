@@ -57,7 +57,7 @@ public class AddBrokerController {
 	
 	@ApiOperation(value = "Allows to create addBroker Details.", response = Response.class)
 	@PostMapping(value = "/createBroker", produces = "application/json")
-	public ResponseEntity<?> create(@ApiParam(value = "The employee request payload") @RequestBody AddBrokerDTO request,
+	public ResponseEntity<?> create(@ApiParam(value = "The broker request payload") @RequestBody AddBrokerDTO request,
 			@RequestHeader HttpHeaders httpHeader) throws Exception {
 		TransactionContext context = responseGenerator.generateTransationContext(httpHeader);
 

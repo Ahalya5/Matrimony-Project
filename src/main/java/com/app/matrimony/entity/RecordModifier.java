@@ -19,7 +19,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import com.app.matrimony.enumaration.Status;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
