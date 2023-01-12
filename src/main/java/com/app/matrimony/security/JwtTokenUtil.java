@@ -12,6 +12,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import com.app.matrimony.entity.BrokerCustomer;
 import com.app.matrimony.entity.User;
 
 import io.jsonwebtoken.Claims;
@@ -55,6 +56,10 @@ public class JwtTokenUtil implements Serializable {
 
     public String generateToken(User user) {
         return doGenerateToken(user.getUserName());
+    }
+    
+    public String generateToken(BrokerCustomer brokerCustomer) {
+    	return doGenerateToken(brokerCustomer.getUserName());
     }
 
     private String doGenerateToken(String subject) {
