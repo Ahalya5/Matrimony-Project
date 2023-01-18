@@ -39,7 +39,7 @@ public class StarValidation {
 		Star starInfo = null;
 
 		if (requestType.equals(RequestType.POST)) {
-			if (!ValidationUtil.isNull1(request.getId())) {
+			if (!ValidationUtil.isNull(request.getId())) {
 				throw new ObjectInvalidException(messageSource.getMessage("invalid.request.payload"));
 			}
 
