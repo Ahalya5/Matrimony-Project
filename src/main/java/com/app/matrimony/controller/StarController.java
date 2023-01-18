@@ -55,7 +55,7 @@ public class StarController {
 			@RequestHeader HttpHeaders httpHeader) throws Exception {
 		TransactionContext context = responseGenerator.generateTransationContext(httpHeader);
 
-		ValidationResult validationResult = starValidation.validate(RequestType.POST, request);
+		ValidationResult validationResult = starValidation.validates(RequestType.POST, request);
 		starService.saveOrUpdate((Star) (validationResult.getObject()));
 
 		try {
@@ -74,7 +74,7 @@ public class StarController {
 			@RequestHeader HttpHeaders httpHeader) throws Exception {
 		TransactionContext context = responseGenerator.generateTransationContext(httpHeader);
 
-		ValidationResult validationResult = starValidation.validate(RequestType.PUT, request);
+		ValidationResult validationResult = starValidation.validates(RequestType.PUT, request);
 
 		try {
 			starService.saveOrUpdate((Star) validationResult.getObject());

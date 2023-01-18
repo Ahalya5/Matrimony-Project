@@ -32,7 +32,7 @@ public class StarValidation {
 	List<String> errorsObj = null;
 	Optional<Subject> subject = null;
 
-	public ValidationResult validate(RequestType requestType, StarDto request) {
+	public ValidationResult validates(RequestType requestType, StarDto request) {
 
 		errors = new ArrayList<>();
 		ValidationResult result = new ValidationResult();
