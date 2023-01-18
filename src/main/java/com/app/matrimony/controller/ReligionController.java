@@ -111,7 +111,7 @@ public class ReligionController {
 	}
 	@ApiOperation(value = "Allows to religion deleted.", response = Response.class)
 	@PutMapping(value = "/deleted/{id}", produces = "application/json")
-	public ResponseEntity<?> update(@RequestParam("id")UUID id,
+	public ResponseEntity<?> update(@PathVariable("id")UUID id,
 			@RequestHeader HttpHeaders httpHeader) throws Exception {
 		TransactionContext context = responseGenerator.generateTransationContext(httpHeader);
 		try {
