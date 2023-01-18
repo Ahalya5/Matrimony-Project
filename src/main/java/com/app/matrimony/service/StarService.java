@@ -36,10 +36,15 @@ public class StarService {
 			starDto.setId(starInp.getId());
 			starDto.setName(starInp.getName());
 			starDto.setDescription(starInp.getDescription());
+			starDto.setStatus(starInp.getStatus());
 			starrDTOList.add(starDto);
 		}
 		return starrDTOList;
 
+	}
+
+	public List<Star> getActives() {
+		return starRepository.getActiveStars();
 	}
 
 	public StarDto getStarById(UUID id) {

@@ -65,7 +65,7 @@ public class RaasiStarValidation {
 		}
 
 		if (null == raasiStarInfo) {
-			raasiStarInfo = raasiStarInfo.builder().name(request.getName()).description(request.getDescription())
+			raasiStarInfo = RaasiStar.builder().name(request.getName()).description(request.getDescription())
 					.build();
 		} else {
 			raasiStarInfo.setName(request.getName());
