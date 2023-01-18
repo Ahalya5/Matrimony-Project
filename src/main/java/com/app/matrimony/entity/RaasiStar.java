@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,5 +42,10 @@ public class RaasiStar extends RecordModifier implements Serializable{
 	
 	@Column(name = "description")
     private String description;
+	
+	@ApiModelProperty(value = "paymentTerms", allowableValues = "NonEmpty String", allowEmptyValue = false)
+	@Type(type = "uuid-char")
+	@Column(name = "star")
+	private UUID star;
 
 }

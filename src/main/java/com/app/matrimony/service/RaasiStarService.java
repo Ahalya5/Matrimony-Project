@@ -33,6 +33,7 @@ public class RaasiStarService {
 			rStarDto.setId(rStarInp.getId());
 			rStarDto.setName(rStarInp.getName());
 			rStarDto.setDescription(rStarInp.getDescription());
+			rStarDto.setStar(rStarInp.getStar());
 			raasiStarrDTOList.add(rStarDto);
 		}
 		return raasiStarrDTOList;
@@ -52,6 +53,7 @@ public class RaasiStarService {
 		rStarDto.setName(starInp.getName());
 		rStarDto.setDescription(starInp.getDescription());
 		rStarDto.setStatus(starInp.getStatus());
+		rStarDto.setStar(starInp.getStar());
 
 		return rStarDto;
 

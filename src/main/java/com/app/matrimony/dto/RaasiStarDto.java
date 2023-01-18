@@ -12,5 +12,6 @@ public class RaasiStarDto extends RecordModifier{
 	private UUID id;
 	private String name;
 	private String description;
+	private UUID star;
 
 }
