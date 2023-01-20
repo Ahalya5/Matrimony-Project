@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.app.matrimony.dto.UserResponseDTO;
 import com.app.matrimony.entity.User;
 import com.app.matrimony.enumaration.Status;
 import com.app.matrimony.repository.RoleRepository;
@@ -77,8 +78,8 @@ public class UserService implements UserDetailsService {
 		return userRepository.findById(id);
 	}
 
-	public List<User> findAll() {
-		return userRepository.findAll();
+	public List<UserResponseDTO> findByUserRoleType(String status) {
+		return userRepository.findByUserRoleType(status);
 	}
 
 	public void deleteUser(UUID id) {
