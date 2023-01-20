@@ -3,6 +3,8 @@ package com.app.matrimony.dto;
 import java.util.Date;
 import java.util.UUID;
 
+import com.app.matrimony.entity.BasicInfo;
+import com.app.matrimony.entity.LifeStyleInfo;
 import com.app.matrimony.enumaration.Disability;
 import com.app.matrimony.enumaration.FamilyStatus;
 import com.app.matrimony.enumaration.FamilyType;
@@ -34,7 +36,7 @@ public class BrokerCustomerDTO {
 	private UUID motherTounge;
 	private String email;
 	private String password;
-	private UUID caste;
+	private UUID casteId;
 	private String subCaste;
 	private String gothram;
 	private String dosham;
@@ -57,6 +59,9 @@ public class BrokerCustomerDTO {
 	private Boolean isOtpVerified;
 	private String otp;
 	private Date expiryDate;
+	private BasicInfo basicInfoObj;
+    private LifeStyleInfo lifeStyleInfoObj;
+    private UUID addBrokerId;
 	
 
 }

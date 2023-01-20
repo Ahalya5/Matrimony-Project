@@ -7,12 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.app.matrimony.config.WriteableRepository;
-import com.app.matrimony.entity.Star;
+import com.app.matrimony.entity.City;
 
 @Repository
-public interface StarRepository extends WriteableRepository<Star, UUID> {
+public interface CityRepository extends WriteableRepository<City, UUID> {
 
-	@Query(value = "SELECT * From mat_star as ms WHERE ms.status ='ACTIVE'", nativeQuery = true)
-	List<Star> getActiveStars();
+	@Query(value = "SELECT C From City C WHERE C.stateId =:stateId")
+	List<City> findByStateId(UUID stateId);
 
 }

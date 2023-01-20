@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.matrimony.dto.UserDTO;
+import com.app.matrimony.dto.UserResponseDTO;
 import com.app.matrimony.entity.User;
 import com.app.matrimony.enumaration.RequestType;
 import com.app.matrimony.response.Response;
@@ -48,7 +48,7 @@ public class UserController {
 	@Autowired
 	private MessagePropertyService messageSource;
 	@Autowired
-	private UserService userservice;
+	private UserService userService;
 	@Autowired
 	private UserValidation validatorService;
 //	@Autowired
@@ -63,7 +63,7 @@ public class UserController {
 		ValidationResult validationResult = validatorService.validate(RequestType.POST, request);
 
 		try {
-			userservice.saveOrUpdate((User) (validationResult.getObject()));
+			userService.saveOrUpdate((User) (validationResult.getObject()));
 			return responseGenerator.successResponse(context, messageSource.getMessage("user.register"), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -79,8 +79,8 @@ public class UserController {
 		TransactionContext context = responseGenerator.generateTransationContext(httpHeader);
 
 		try {
-			
-		List<User> user = userservice.findAll();
+			String status ="ACTIVE";
+		List<UserResponseDTO> user = userService.findByUserRoleType(status);
 
 			return responseGenerator.successGetResponse(context, messageSource.getMessage("user.get"),user,
 					HttpStatus.OK);
@@ -97,7 +97,7 @@ public class UserController {
 
 		TransactionContext context = responseGenerator.generateTransationContext(httpHeader);
 		try {
-			Optional<User> user = userservice.getById(id);
+			Optional<User> user = userService.getById(id);
 
 			return responseGenerator.successGetResponse(context, messageSource.getMessage("user.get.by.id"), user,
 					HttpStatus.OK);
@@ -115,7 +115,7 @@ public class UserController {
 		ValidationResult validationResult = validatorService.validate(RequestType.PUT, request);
 
 		try {
-			userservice.saveOrUpdate((User) validationResult.getObject());
+			userService.saveOrUpdate((User) validationResult.getObject());
 			return responseGenerator.successResponse(context, messageSource.getMessage("user.update"), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -128,7 +128,7 @@ public class UserController {
 	public ResponseEntity<?> delete(@PathVariable("id") UUID id, @RequestHeader HttpHeaders httpHeader)
 			throws Exception {
 		TransactionContext context = responseGenerator.generateTransationContext(httpHeader);
-		userservice.deleteUser(id);
+		userService.deleteUser(id);
 		try {
 			return responseGenerator.successResponse(context, messageSource.getMessage("user.delete"), HttpStatus.OK);
 		} catch (Exception e) {

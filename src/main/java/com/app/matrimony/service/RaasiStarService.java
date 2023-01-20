@@ -33,10 +33,16 @@ public class RaasiStarService {
 			rStarDto.setId(rStarInp.getId());
 			rStarDto.setName(rStarInp.getName());
 			rStarDto.setDescription(rStarInp.getDescription());
+			rStarDto.setStar(rStarInp.getStar());
+			rStarDto.setStatus(rStarInp.getStatus());
 			raasiStarrDTOList.add(rStarDto);
 		}
 		return raasiStarrDTOList;
 
+	}
+
+	public List<RaasiStar> getActives() {
+		return raasiStarRepository.getActiveRaasi();
 	}
 
 	public RaasiStarDto getRStarById(UUID id) {
@@ -47,6 +53,8 @@ public class RaasiStarService {
 		rStarDto.setId(starInp.getId());
 		rStarDto.setName(starInp.getName());
 		rStarDto.setDescription(starInp.getDescription());
+		rStarDto.setStatus(starInp.getStatus());
+		rStarDto.setStar(starInp.getStar());
 
 		return rStarDto;
 
@@ -64,7 +72,7 @@ public class RaasiStarService {
 			raasiStar.setStatus(Status.DELETED);
 			raasiStar.setDeletedBy("Hacker");
 			raasiStar.setDeletedOn(new Date());
-			
+
 			raasiStarRepository.saveAndFlush(raasiStar);
 
 		}

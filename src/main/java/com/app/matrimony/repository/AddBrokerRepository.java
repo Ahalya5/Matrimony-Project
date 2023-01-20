@@ -11,16 +11,16 @@ import com.app.matrimony.entity.User;
 
 public interface AddBrokerRepository extends WriteableRepository<AddBroker, UUID> {
 	
-	@Query(value ="SELECT PM.* FROM employee_details PM WHERE PM.email=:email and PM.status IN ('ACTIVE','INACTIVE')", nativeQuery = true)	
+	@Query(value ="SELECT PM.* FROM ma_broker PM WHERE PM.email=:email and PM.status IN ('ACTIVE','INACTIVE')", nativeQuery = true)	
 	Optional<AddBroker> findByEmail(String email);
 	
-	@Query(value="SELECT * FROM ma_user u where u.email_id =:userName",nativeQuery=true)
+	@Query(value="SELECT * FROM ma_broker u where u.mobile_number =:userName",nativeQuery=true)
 	Optional<AddBroker> findByUserName(String userName);
 	
-	@Query(value="SELECT * FROM ma_user u WHERE u.mobile_no=:phoneNo",nativeQuery=true)
+	@Query(value="SELECT * FROM ma_broker u WHERE u.mobile_number=:phoneNo",nativeQuery=true)
 	Optional<AddBroker> findByMobileNo(String phoneNo);
 
-	@Query(value="SELECT * FROM ma_user u WHERE u.email_id= :email",nativeQuery=true)
+	@Query(value="SELECT * FROM ma_broker u WHERE u.email= :email",nativeQuery=true)
 	Optional<AddBroker> findByUserEmail(String email);
 
 

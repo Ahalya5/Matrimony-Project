@@ -22,15 +22,10 @@ import lombok.AllArgsConstructor;
 @Transactional
 @AllArgsConstructor(onConstructor_ = { @Autowired })
 public class AddBrokerService {
-	
+
 	@Autowired
 	AddBrokerRepository addBrokerRepository;
 
-	public Optional<AddBroker> findByEmail(String email) {
-		return addBrokerRepository.findByEmail(email);
-		
-	}
-	
 	public void deleteBroker(UUID id) {
 		if (id != null) {
 			Optional<AddBroker> UOMObj = addBrokerRepository.findById(id);
@@ -41,11 +36,11 @@ public class AddBrokerService {
 			addBrokerRepository.saveAndFlush(obj);
 		}
 	}
-	
+
 	public Optional<AddBroker> findById(UUID id) {
 		return addBrokerRepository.findById(id);
 	}
-	
+
 	public static String generateRandomPassword(int len) {
 
 		String chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%&";
@@ -56,10 +51,20 @@ public class AddBrokerService {
 		return sb.toString();
 	}
 
-
 	public AddBroker saveOrUpdate(AddBroker addBroker) {
-		return addBrokerRepository.save(addBroker) ;
 		
+		if (addBroker.getId()== null) {
+			String password = generateRandomPassword(6);
+			System.out.println("Password: " + password);
+			String encrypPAW = addBroker.setAndEncryptPassword(password);
+			addBroker.setUserName(addBroker.getMobileNumber());
+			addBroker.setPassword(encrypPAW);
+
+//			obj.setAndEncryptPassword(obj.getPassword());
+
+		}
+		return addBrokerRepository.save(addBroker);
+
 	}
 
 	public List<AddBroker> findAll() {
@@ -69,6 +74,23 @@ public class AddBrokerService {
 	public Optional<AddBroker> getById(UUID id) {
 		return addBrokerRepository.findById(id);
 	}
+
+	public Optional<AddBroker> findByUserName(String userName) {
+		return addBrokerRepository.findByUserName(userName);
+	}
+	
+	public Optional<AddBroker> findByEmail(String email) {
+		return addBrokerRepository.findByEmail(email);
+
+	}
+	
+	public Optional<AddBroker> findByMobileNo(String phoneNo) {
+		return addBrokerRepository.findByMobileNo(phoneNo);
+	}
+
+	public Optional<AddBroker> findByUserEmail(String email) {
+		return addBrokerRepository.findByUserEmail(email);
 	}
 
 
+}

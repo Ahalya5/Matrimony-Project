@@ -10,6 +10,10 @@ import lombok.Data;
 @Data
 public class RoleDTO extends RecordModifier implements Serializable {
 		
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private UUID id;
 	private String roleName;
 	private String description;

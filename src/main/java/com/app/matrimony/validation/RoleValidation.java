@@ -11,68 +11,69 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.matrimony.controllerAdvice.ObjectInvalidException;
-import com.app.matrimony.dto.StarDto;
-import com.app.matrimony.entity.Star;
+import com.app.matrimony.dto.RoleDTO;
+import com.app.matrimony.entity.Role;
 import com.app.matrimony.enumaration.RequestType;
 import com.app.matrimony.service.MessagePropertyService;
-import com.app.matrimony.service.StarService;
+import com.app.matrimony.service.RoleService;
 import com.app.matrimony.util.ValidationUtil;
 
-import lombok.AllArgsConstructor;
-import lombok.NonNull;
-
-@AllArgsConstructor(onConstructor_ = { @Autowired })
+//dharsh
 @Service
-public class StarValidation {
+public class RoleValidation {
+	@Autowired
+	private MessagePropertyService messageSource;
 
-	private @NonNull MessagePropertyService messageSource;
-	private @NonNull StarService service;
+	@Autowired
+	private RoleService roleService;
 
 	List<String> errors = null;
 	List<String> errorsObj = null;
 	Optional<Subject> subject = null;
 
-	public ValidationResult validates(RequestType requestType, StarDto request) {
+	public ValidationResult validate(RequestType requestType, RoleDTO request) {
 
 		errors = new ArrayList<>();
 		ValidationResult result = new ValidationResult();
-		Star starInfo = null;
+		Role role = null;
 
 		if (requestType.equals(RequestType.POST)) {
 			if (!ValidationUtil.isNull(request.getId())) {
 				throw new ObjectInvalidException(messageSource.getMessage("invalid.request.payload"));
 			}
-
 		} else {
-			if (ValidationUtil.isNull1(request.getId())) {
+			if (ValidationUtil.isNull(request.getId())) {
 				throw new ObjectInvalidException(messageSource.getMessage("invalid.request.payload"));
 			}
 
-			Optional<Star> eOptional = service.getById(request.getId());
-			if (!eOptional.isPresent()) {
-				throw new ObjectInvalidException(messageSource.getMessage("star.not.found")); 
+			Optional<Role> roleOptional = roleService.findById(request.getId());
+			if (!roleOptional.isPresent()) {
+				throw new ObjectInvalidException(messageSource.getMessage("role.not.found"));
 			}
 
-			starInfo = eOptional.get();
+			role = roleOptional.get();
 		}
 
-		if (ValidationUtil.isNullOrEmpty(request.getName())) {
-			throw new ObjectInvalidException(messageSource.getMessage("name.required"));
+		if (ValidationUtil.isNullOrEmpty(request.getDescription())) {
+			errors.add(messageSource.getMessage("description.required"));
 		}
+
 		if (errors.size() > 0) {
 			String errorMessage = errors.stream().map(a -> String.valueOf(a)).collect(Collectors.joining(", "));
 			throw new ObjectInvalidException(errorMessage);
 		}
 
-		if (null == starInfo) {
-			starInfo = Star.builder().name(request.getName()).description(request.getDescription()).build();
+		if (null == role) {
+			role = Role.builder().roleName(request.getRoleName()).description(request.getDescription())
+
+					.build();
 		} else {
-			starInfo.setName(request.getName());
-			starInfo.setDescription(request.getDescription());
+			role.setRoleName(request.getRoleName());
+			role.setDescription(request.getDescription());
 		}
-		result.setObject(starInfo);
 
+		result.setObject(role);
 		return result;
-	}
 
+	}
 }

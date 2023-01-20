@@ -117,7 +117,7 @@ public class BrokerCustomerValidation {
 		if (ValidationUtil.isNullOrEmpty(request.getSubCaste())) {
 			errors.add("subCaste.required");
 		}
-		if (ValidationUtil.isNull1(request.getCaste())) {
+		if (ValidationUtil.isNull1(request.getCasteId())) {
 			errors.add("caste.required");
 		}
 		if (ValidationUtil.isNullOrEmpty(request.getDosham())) {
@@ -156,6 +156,10 @@ public class BrokerCustomerValidation {
 		if(ValidationUtil.isNullOrEmpty(request.getAbout())) {
 			errors.add("about.requried");
 		}
+		
+		if(ValidationUtil.isNull1(request.getAddBrokerId())) {
+			errors.add("add.broker.id.requried");
+		}
 		String encrptPassword = PasswordUtils.getEncryptedPassword(request.getPassword());
 		if (errors.size() > 0) {
 			String errorMessage = errors.stream().map(a -> String.valueOf(a)).collect(Collectors.joining(", "));
@@ -171,7 +175,7 @@ public class BrokerCustomerValidation {
 			user = BrokerCustomer.builder().userName(request.getUserName()).password(encrptPassword).id(request.getId())
 					.profileFor(request.getProfileFor()).name(request.getName()).dateOfBirth(request.getDateOfBirth())
 					.gender(request.getGender()).motherTounge(request.getMotherTounge()).phoneNo(request.getPhoneNo())
-					.religion(request.getReligion()).maritalStatus(request.getMaritalStatus()).caste(request.getCaste())
+					.religion(request.getReligion()).maritalStatus(request.getMaritalStatus()).casteId(request.getCasteId())
 					.subCaste(request.getSubCaste()).gothram(request.getGothram()).dosham(request.getDosham())
 					.email(request.getEmail()).height(request.getHeight()).familyStatus(request.getFamilyStatus())
 					.familyType(request.getFamilyType()).familyValue(request.getFamilyValue())
@@ -180,7 +184,10 @@ public class BrokerCustomerValidation {
 					.occupation(request.getOccupation()).jobType(request.getJobType()).roleType(request.getRoleType())
 					.annualIncome(request.getAnnualIncome()).cityId(request.getCityId()).stateId(request.getStateId())
 					.otp(request.getOtp()).isOtpVerified(request.getIsOtpVerified()).countryId(request.getCountryId())
-					.about(request.getAbout()).expiryDate(request.getExpiryDate()).build();
+					.about(request.getAbout()).expiryDate(request.getExpiryDate())
+					.addBrokerId(request.getAddBrokerId())
+					.basicInfoObj(request.getBasicInfoObj())
+					.lifeStyleInfoObj(request.getLifeStyleInfoObj()).build();
 
 		} else {
 			user.setUserName(request.getUserName());
@@ -193,7 +200,7 @@ public class BrokerCustomerValidation {
 			user.setReligion(request.getReligion());
 			user.setGender(request.getGender());
 			user.setMaritalStatus(request.getMaritalStatus());
-			user.setCaste(request.getCaste());
+			user.setCasteId(request.getCasteId());
 			user.setSubCaste(request.getSubCaste());
 			user.setGothram(request.getGothram());
 			user.setDosham(request.getDosham());
@@ -215,7 +222,11 @@ public class BrokerCustomerValidation {
 			user.setExpiryDate(request.getExpiryDate());
 			user.setIsOtpVerified(request.getIsOtpVerified());
 			user.setJobType(request.getJobType());
+			user.setAddBrokerId(request.getAddBrokerId());
 			user.setAbout(request.getAbout());
+			user.setBasicInfoObj(request.getBasicInfoObj());
+			user.setLifeStyleInfoObj(request.getLifeStyleInfoObj());
+			
 		}
 		result.setObject(user);
 		return result;

@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -82,7 +83,7 @@ public class MotherTongueController {
 
 	@ApiOperation(value = "Allow the Religion Api", response = Response.class)
 	@GetMapping(value = "/get/{id}", produces = "application/json")
-	public ResponseEntity<?> findbyId(@RequestParam("id") UUID id, @RequestHeader HttpHeaders httpHeaders)
+	public ResponseEntity<?> findbyId(@PathVariable("id") UUID id, @RequestHeader HttpHeaders httpHeaders)
 			throws Exception {
 		TransactionContext transactionContext = responseGenerator.generateTransationContext(httpHeaders);
 		try {
@@ -111,7 +112,7 @@ public class MotherTongueController {
 	}
 	@ApiOperation(value = "Allows to religion deleted.", response = Response.class)
 	@PutMapping(value = "/deleted/{id}", produces = "application/json")
-	public ResponseEntity<?> update(@RequestParam("id")UUID id,
+	public ResponseEntity<?> update(@PathVariable("id")UUID id,
 			@RequestHeader HttpHeaders httpHeader) throws Exception {
 		TransactionContext context = responseGenerator.generateTransationContext(httpHeader);
 		try {

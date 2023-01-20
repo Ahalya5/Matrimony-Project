@@ -5,12 +5,16 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+
+import com.app.matrimony.enumaration.Status;
 
 import groovy.transform.EqualsAndHashCode;
 import lombok.AllArgsConstructor;
@@ -43,5 +47,9 @@ public class Role extends RecordModifier implements Serializable {
 
 	@Column(name = "description")
 	private String description;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "status")
+	private Status status;
 
 }

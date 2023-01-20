@@ -12,40 +12,51 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
-import io.swagger.annotations.ApiModelProperty;
+import groovy.transform.EqualsAndHashCode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Data
+@EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "mat_raasi_star")
-public class RaasiStar extends RecordModifier implements Serializable{
-	/**
-	 * 
-	 */
+@Table(name = "mat_city")
+public class City implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(generator = "UUID")
 	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 	@Type(type = "uuid-char")
 	@Column(name = "id", updatable = false, nullable = false)
 	private UUID id;
-	
+
 	@Column(name = "name")
 	private String name;
-	
-	@Column(name = "description")
-    private String description;
-	
-	@ApiModelProperty(value = "paymentTerms", allowableValues = "NonEmpty String", allowEmptyValue = false)
+
+	@Column(name = "short_desc")
+	private String shortName;
+
+	@Column(name = "zip_code")
+	private String zipCode;
+
+	@Column(name = "latitude")
+	private Double latitude;
+
+	@Column(name = "longitude")
+	private Double longitude;
+
 	@Type(type = "uuid-char")
-	@Column(name = "star")
-	private UUID star;
+	@Column(name = "state_id")
+	private UUID stateId;
+
+	@Type(type = "uuid-char")
+	@Column(name = "country_id")
+	private UUID countryId;
 
 }

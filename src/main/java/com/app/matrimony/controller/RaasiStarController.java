@@ -60,8 +60,7 @@ public class RaasiStarController {
 		raasiStarService.saveOrUpdate((RaasiStar) (validationResult.getObject()));
 
 		try {
-			return responseGenerator.successResponse(context, "Raasi.Star.created",
-					HttpStatus.OK);
+			return responseGenerator.successResponse(context, "Raasi.Star.created", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error(e.getMessage());
@@ -80,8 +79,22 @@ public class RaasiStarController {
 
 		try {
 			raasiStarService.saveOrUpdate((RaasiStar) validationResult.getObject());
-			return responseGenerator.successResponse(context, "Raasi.star.updated",
-					HttpStatus.OK);
+			return responseGenerator.successResponse(context, "Raasi.star.updated", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return responseGenerator.errorResponse(context, e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@ApiOperation(value = "Allows to fetch active raasi.", response = Response.class)
+	@GetMapping(value = "/getActiveRaasiInfo", produces = "application/json")
+	public ResponseEntity<?> getActiveraasis(@RequestHeader HttpHeaders httpHeader) throws Exception {
+
+		TransactionContext context = responseGenerator.generateTransationContext(httpHeader);
+		try {
+			List<RaasiStar> raasiStars = raasiStarService.getActives();
+
+			return responseGenerator.successGetResponse(context, "active.raasi.stars.got", raasiStars, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return responseGenerator.errorResponse(context, e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -97,8 +110,7 @@ public class RaasiStarController {
 		try {
 			RaasiStarDto raasiStarDto = raasiStarService.getRStarById(id);
 
-			return responseGenerator.successGetResponse(context, "raasi.star.get",
-					raasiStarDto, HttpStatus.OK);
+			return responseGenerator.successGetResponse(context, "raasi.star.get", raasiStarDto, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return responseGenerator.errorResponse(context, e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -114,8 +126,7 @@ public class RaasiStarController {
 		try {
 			List<RaasiStarDto> raasiStarDtos = raasiStarService.getAllRStar();
 
-			return responseGenerator.successGetResponse(context, "raasi.stars.get",
-					raasiStarDtos, HttpStatus.OK);
+			return responseGenerator.successGetResponse(context, "raasi.stars.get", raasiStarDtos, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return responseGenerator.errorResponse(context, e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -131,8 +142,7 @@ public class RaasiStarController {
 		try {
 
 			raasiStarService.deleteById(id);
-			return responseGenerator.successResponse(context, "raasi.star.deleted",
-					HttpStatus.OK);
+			return responseGenerator.successResponse(context, "raasi.star.deleted", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error(e.getMessage(), e);
