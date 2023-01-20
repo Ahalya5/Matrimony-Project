@@ -9,6 +9,8 @@ import lombok.Data;
 public class AddBrokerDTO {
 	
 	private UUID id;
+	private String userName;
+	public String password;
 	private String firstName;
 	private String lastName;
 	private String addressLine1;

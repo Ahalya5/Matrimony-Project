@@ -20,7 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.matrimony.dto.ErrorDto;
 import com.app.matrimony.dto.LoginRequest;
-import com.app.matrimony.entity.User;
+import com.app.matrimony.entity.AddBroker;
+import com.app.matrimony.repository.AddBrokerRepository;
 import com.app.matrimony.repository.UserRepository;
 import com.app.matrimony.response.ResponseGenerator;
 import com.app.matrimony.response.TransactionContext;
@@ -33,19 +34,22 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/auth")
-@Api(value = "Authorization Rest API", description = "Login")
+@Api(value = "Authorization Rest API", description = "Broker Login")
 @AllArgsConstructor(onConstructor_ = { @Autowired })
-public class AuthenticationController {
-
-	private static final Logger logger = Logger.getLogger(AuthenticationController.class);
+public class BrokerAuthenticationController {
+	
+private static final Logger logger = Logger.getLogger(AuthenticationController.class);
 	
 	private @NonNull ResponseGenerator responseGenerator;
 
 	private @NonNull UserRepository userRepository;
 
+	private @NonNull AddBrokerRepository addBrokerRepository;
+	
 	private @NonNull JwtTokenUtil jwtTokenUtil;
 
 	private @NonNull MessageSource messageSource;
@@ -54,8 +58,9 @@ public class AuthenticationController {
 
 	private @NonNull ApplicationEventPublisher applicationEventPublisher;
 	
+	
 	@ApiOperation(value = "Logs the user in to the system and return the auth tokens")
-	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+	@RequestMapping(value = "/loginBroker", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> login(@ApiParam(value = "The LoginRequest payload") @RequestBody LoginRequest request,
 			@RequestHeader HttpHeaders httpHeader) throws Exception {
 		ErrorDto errorDto = null;
@@ -68,8 +73,8 @@ public class AuthenticationController {
 			response.put("error", errorDto);
 			return ResponseEntity.badRequest().body(response);
 		}
-		Optional<User> userOptional = userRepository.findByUserName(request.getUserName());
-		if (!userOptional.isPresent()) {
+		Optional<AddBroker> brokerOptional = addBrokerRepository.findByUserName(request.getUserName());
+		if (!brokerOptional.isPresent()) {
 			errorDto = new ErrorDto();
 			errorDto.setCode("400");
 			errorDto.setMessage("Invalid Username.!");
@@ -77,10 +82,10 @@ public class AuthenticationController {
 			response.put("error", errorDto);
 			return ResponseEntity.badRequest().body(response);
 		}
-		User user = userOptional.get();
+		AddBroker addBroker = brokerOptional.get();
 
 		String encryptedPassword = PasswordUtil.getEncryptedPassword(request.getPassword());
-		if (!user.getPassword().equals(encryptedPassword)) {
+		if (!addBroker.getPassword().equals(encryptedPassword)) {
 			errorDto = new ErrorDto();
 			errorDto.setCode("400");
 			errorDto.setMessage("Password is wrong.!");
@@ -89,9 +94,9 @@ public class AuthenticationController {
 			return ResponseEntity.badRequest().body(response);
 		}
 
-		final String token = jwtTokenUtil.generateToken(user);
+		final String token = jwtTokenUtil.generateToken(addBroker);
 		response.put("status", 1);
-		response.put("role", user.getRoleId());
+		response.put("role", addBroker.getId());
 		response.put("message", "Logged in Successfully.!");
 		response.put("jwt", token);
 		response.put("isOtpVerified", true);
@@ -108,4 +113,6 @@ public class AuthenticationController {
 
 	
 	
+
+
 }
