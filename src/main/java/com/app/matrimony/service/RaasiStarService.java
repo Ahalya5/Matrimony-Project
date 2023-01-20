@@ -34,6 +34,7 @@ public class RaasiStarService {
 			rStarDto.setName(rStarInp.getName());
 			rStarDto.setDescription(rStarInp.getDescription());
 			rStarDto.setStar(rStarInp.getStar());
+			rStarDto.setStatus(rStarInp.getStatus());
 			raasiStarrDTOList.add(rStarDto);
 		}
 		return raasiStarrDTOList;
