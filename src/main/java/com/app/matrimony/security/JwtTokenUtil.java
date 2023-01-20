@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import com.app.matrimony.entity.AddBroker;
+import com.app.matrimony.entity.BrokerCustomer;
 import com.app.matrimony.entity.User;
 
 import io.jsonwebtoken.Claims;

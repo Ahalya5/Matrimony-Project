@@ -10,7 +10,7 @@ import com.app.matrimony.entity.Role;
 
 public interface RoleRepository extends JpaRepository<Role, UUID>{
 
-	Optional<RoleDTO> findByRoleName(String roleName);
+	Optional<Role> findByRoleName(String roleName);
 	
 	Optional<Role> findByRoleNameAndIdNot(String roleName, UUID Id);
 
