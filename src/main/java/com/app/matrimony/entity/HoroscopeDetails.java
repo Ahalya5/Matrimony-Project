@@ -28,8 +28,8 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "mat_hoioscope_details")
-public class HoioscopeDetails extends RecordModifier implements Serializable {
+@Table(name = "mat_horoscope_details")
+public class HoroscopeDetails extends RecordModifier implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id

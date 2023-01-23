@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import com.app.matrimony.entity.BasicInfo;
 import com.app.matrimony.entity.FamilyInfo;
-import com.app.matrimony.entity.HoioscopeDetails;
+import com.app.matrimony.entity.HoroscopeDetails;
 import com.app.matrimony.entity.LifeStyleInfo;
 import com.app.matrimony.entity.ReligionInfo;
 import com.app.matrimony.enumaration.Disability;
@@ -67,7 +67,7 @@ public class BrokerCustomerDTO {
     private UUID addBrokerId;
     private FamilyInfo familyInfoObj;
     private ReligionInfo religionInfoObj;
-    private HoioscopeDetails hoioscopeDetailsObj;
+    private HoroscopeDetails horoscopeDetailsObj;
 	
 
 }

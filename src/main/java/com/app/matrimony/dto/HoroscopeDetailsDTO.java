@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class HoioscopeDetailsDTO {
+public class HoroscopeDetailsDTO {
 	private UUID id;
 	private String timeOfbirth;
 	private String placeOfBirth;

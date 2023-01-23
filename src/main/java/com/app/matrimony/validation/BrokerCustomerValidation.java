@@ -189,7 +189,7 @@ public class BrokerCustomerValidation {
 					.basicInfoObj(request.getBasicInfoObj())
 					.lifeStyleInfoObj(request.getLifeStyleInfoObj())
 					.familyInfoObj(request.getFamilyInfoObj()).religionInfoObj(request.getReligionInfoObj())
-					.hoioscopeDetailsObj(request.getHoioscopeDetailsObj()).build();
+					.horoscopeDetailsObj(request.getHoroscopeDetailsObj()).build();
 
 		} else {
 			user.setUserName(request.getUserName());
@@ -230,7 +230,7 @@ public class BrokerCustomerValidation {
 			user.setLifeStyleInfoObj(request.getLifeStyleInfoObj());
 			user.setFamilyInfoObj(request.getFamilyInfoObj());
 			user.setReligionInfoObj(request.getReligionInfoObj());
-			user.setHoioscopeDetailsObj(request.getHoioscopeDetailsObj());
+			user.setHoroscopeDetailsObj(request.getHoroscopeDetailsObj());
 			
 		}
 		result.setObject(user);

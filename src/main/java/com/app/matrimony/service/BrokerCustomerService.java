@@ -28,9 +28,7 @@ public class BrokerCustomerService {
 	@Autowired
 	private BrokerCustomerRepository brokerCustomerRepository;
 
-
-
-	public void saveOrUpdate(BrokerCustomer userObj) {
+	public void saveOrUpdate(BrokerCustomer brokerCustomer) {
 		final long expirInterval = 5L * 60 * 1000;
 
 		String otps = new DecimalFormat("000000").format(new Random().nextInt(999999));
@@ -38,29 +36,48 @@ public class BrokerCustomerService {
 
 		Date expireDate = new Date(System.currentTimeMillis() + expirInterval);
 		System.out.println(expireDate);
-		userObj.setExpiryDate(expireDate);
+		brokerCustomer.setExpiryDate(expireDate);
+		BrokerCustomer brokerCustomerObj = new BrokerCustomer();
 
-		
-		BrokerCustomer brokerContomer = BrokerCustomer.builder().userName(userObj.getUserName())
-				.profileFor(userObj.getProfileFor()).phoneNo(userObj.getPhoneNo()).gender(userObj.getGender())
-				.dateOfBirth(userObj.getDateOfBirth()).religion(userObj.getReligion())
-				.motherTounge(userObj.getMotherTounge()).email(userObj.getEmail()).password(userObj.getPassword())
-				.casteId(userObj.getCasteId()).stateId(userObj.getStateId()).cityId(userObj.getCityId())
-				.countryId(userObj.getCountryId()).subCaste(userObj.getSubCaste()).gothram(userObj.getGothram())
-				.dosham(userObj.getDosham()).maritalStatus(userObj.getMaritalStatus()).height(userObj.getHeight())
-				.familyStatus(userObj.getFamilyStatus()).familyType(userObj.getFamilyType())
-				.familyValue(userObj.getFamilyValue()).disability(userObj.getDisability())
-				.highestEducation(userObj.getHighestEducation()).annualIncome(userObj.getAnnualIncome())
-				.occupation(userObj.getOccupation()).about(userObj.getAbout()).jobType(userObj.getJobType())
-				.name(userObj.getName()).otp(otps).isOtpVerified(userObj.getIsOtpVerified()).expiryDate(expireDate)
-				.addBrokerId(userObj.getAddBrokerId())
-				.lifeStyleInfoObj(userObj.getLifeStyleInfoObj())
-				.basicInfoObj(userObj.getBasicInfoObj()).familyInfoObj(userObj.getFamilyInfoObj())
-				.religionInfoObj(userObj.getReligionInfoObj()).hoioscopeDetailsObj(userObj.getHoioscopeDetailsObj())
-				.build();
-		brokerCustomerRepository.saveAndFlush(brokerContomer);
-		
-
+		brokerCustomerObj.setAddBrokerId(brokerCustomer.getAddBrokerId());
+		brokerCustomerObj.setAnnualIncome(brokerCustomer.getAnnualIncome());
+		brokerCustomerObj.setCasteId(brokerCustomer.getCasteId());
+		brokerCustomerObj.setCityId(brokerCustomer.getCityId());
+		brokerCustomerObj.setCountryId(brokerCustomer.getCountryId());
+		brokerCustomerObj.setDisability(brokerCustomer.getDisability());
+		brokerCustomerObj.setPassword(brokerCustomer.getPassword());
+		brokerCustomerObj.setDosham(brokerCustomer.getDosham());
+		brokerCustomerObj.setId(brokerCustomer.getId());
+		brokerCustomerObj.setEmail(brokerCustomer.getEmail());
+		brokerCustomerObj.setExpiryDate(expireDate);
+		brokerCustomerObj.setOtp(otps);
+		brokerCustomerObj.setGender(brokerCustomer.getGender());
+		brokerCustomerObj.setIsOtpVerified(brokerCustomer.getIsOtpVerified());
+		brokerCustomerObj.setGothram(brokerCustomer.getGothram());
+		brokerCustomerObj.setName(brokerCustomer.getName());
+		brokerCustomerObj.setMaritalStatus(brokerCustomer.getMaritalStatus());
+		brokerCustomerObj.setOccupation(brokerCustomer.getOccupation());
+		brokerCustomerObj.setProfileFor(brokerCustomer.getProfileFor());
+		brokerCustomerObj.setPhoneNo(brokerCustomer.getPhoneNo());
+		brokerCustomerObj.setHeight(brokerCustomer.getHeight());
+		brokerCustomerObj.setDateOfBirth(brokerCustomer.getDateOfBirth());
+		brokerCustomerObj.setReligion(brokerCustomer.getReligion());
+		brokerCustomerObj.setMotherTounge(brokerCustomer.getMotherTounge());
+		brokerCustomerObj.setSubCaste(brokerCustomer.getSubCaste());
+		brokerCustomerObj.setFamilyStatus(brokerCustomer.getFamilyStatus());
+		brokerCustomerObj.setFamilyType(brokerCustomer.getFamilyType());
+		brokerCustomerObj.setFamilyValue(brokerCustomer.getFamilyValue());
+		brokerCustomerObj.setHighestEducation(brokerCustomer.getHighestEducation());
+		brokerCustomerObj.setJobType(brokerCustomer.getJobType());
+		brokerCustomerObj.setAbout(brokerCustomer.getAbout());
+		brokerCustomerObj.setUserName(brokerCustomer.getUserName());
+		brokerCustomerObj.setRoleType(brokerCustomer.getRoleType());
+		brokerCustomerObj.setBasicInfoObj(brokerCustomer.getBasicInfoObj());
+		brokerCustomerObj.setFamilyInfoObj(brokerCustomer.getFamilyInfoObj());
+		brokerCustomerObj.setLifeStyleInfoObj(brokerCustomer.getLifeStyleInfoObj());
+		brokerCustomerObj.setReligionInfoObj(brokerCustomer.getReligionInfoObj());
+		brokerCustomerObj.setHoroscopeDetailsObj(brokerCustomer.getHoroscopeDetailsObj());
+		brokerCustomerRepository.saveAndFlush(brokerCustomerObj);
 
 	}
 

@@ -194,7 +194,7 @@ public class BrokerCustomer extends RecordModifier implements Serializable {
 	private ReligionInfo religionInfoObj;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "hoioscope_details_id", referencedColumnName = "id")
-	private HoioscopeDetails hoioscopeDetailsObj;
+	@JoinColumn(name = "horoscope_details_id", referencedColumnName = "id")
+	private HoroscopeDetails horoscopeDetailsObj;
 
 }
