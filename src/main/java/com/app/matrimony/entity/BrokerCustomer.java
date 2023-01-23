@@ -53,7 +53,7 @@ public class BrokerCustomer extends RecordModifier implements Serializable {
 	@GeneratedValue(generator = "UUID")
 	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 	@Type(type = "uuid-char")
-	@Column(name = "id",nullable = false, updatable = false)
+	@Column(name = "id", nullable = false, updatable = false)
 	private UUID id;
 
 	@NotNull(message = "profileFor cannot be blank")
@@ -168,32 +168,33 @@ public class BrokerCustomer extends RecordModifier implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "role_type")
 	private RoleType roleType;
-	
+
+	@Type(type = "uuid-char")
 	@Column(name = "add_broker_id")
-	 private UUID addBrokerId;
+	private UUID addBrokerId;
 
 	public void setAndEncryptPassword(String password) {
 		setPassword(PasswordUtils.getEncryptedPassword(password));
 	}
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "basic_info_id")
+	@JoinColumn(name = "basic_info_id", referencedColumnName = "id")
 	private BasicInfo basicInfoObj;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "life_style_info_id")
+	@JoinColumn(name = "life_style_info_id", referencedColumnName = "id")
 	private LifeStyleInfo lifeStyleInfoObj;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "family_info_id")
+	@JoinColumn(name = "family_info_id", referencedColumnName = "id")
 	private FamilyInfo familyInfoObj;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "religion_info_id")
+	@JoinColumn(name = "religion_info_id", referencedColumnName = "id")
 	private ReligionInfo religionInfoObj;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "hoioscope_details_id")
+	@JoinColumn(name = "hoioscope_details_id", referencedColumnName = "id")
 	private HoioscopeDetails hoioscopeDetailsObj;
 
 }

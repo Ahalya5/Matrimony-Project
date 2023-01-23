@@ -59,7 +59,6 @@ public class LifeStyleInfo extends RecordModifier implements Serializable{
 	@Column(name = "drinking")
 	private Drinking drinking;
 	
-	@OneToOne(mappedBy = "lifeStyleInfoObj")
-	private BrokerCustomer brokerObj;
+
 
 }

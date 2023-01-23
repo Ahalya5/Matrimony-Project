@@ -28,7 +28,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "mat_hoiscope_details")
+@Table(name = "mat_hoioscope_details")
 public class HoioscopeDetails extends RecordModifier implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -53,7 +53,5 @@ public class HoioscopeDetails extends RecordModifier implements Serializable {
 	@Type(type = "uuid-char")
 	@Column(name = "city_id")
 	private UUID cityId;
-	
-	@OneToOne(mappedBy = "hoioscopeDetailsObj")
-	private BrokerCustomer obj;
+
 }

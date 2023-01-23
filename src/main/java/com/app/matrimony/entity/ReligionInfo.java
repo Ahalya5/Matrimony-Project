@@ -25,7 +25,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "mat_religion_info")
+@Table(name = "matr_religion_info")
 public class ReligionInfo extends RecordModifier implements Serializable{
 	
 private static final long serialVersionUID=1L;
@@ -42,8 +42,6 @@ private static final long serialVersionUID=1L;
 	
 	@Column(name = "raasi_id")
 	private UUID raasiId;
-	
-	@OneToOne(mappedBy = "religionInfoObj")
-	private BrokerCustomer broObj;
+
 
 }

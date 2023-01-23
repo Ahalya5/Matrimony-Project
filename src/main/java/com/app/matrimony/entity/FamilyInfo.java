@@ -61,10 +61,9 @@ public class FamilyInfo extends RecordModifier implements Serializable{
     private String father_status;	
 	
 	@Column(name = "mother_status")
-    private String masther_status;	
+    private String mother_status;	
 	
-	@OneToOne(mappedBy = "familyInfoObj")
-	private BrokerCustomer customerObj;
+
 	
 	
 	

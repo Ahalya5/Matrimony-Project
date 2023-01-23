@@ -58,6 +58,5 @@ public class BasicInfo extends RecordModifier implements Serializable{
 	@Column(name = "organization")
 	private String organization;
 	
-	@OneToOne(mappedBy = "basicInfoObj")
-	private BrokerCustomer brokerCustomerObj;
+
 }
