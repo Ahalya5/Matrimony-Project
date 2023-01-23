@@ -4,7 +4,10 @@ import java.util.Date;
 import java.util.UUID;
 
 import com.app.matrimony.entity.BasicInfo;
+import com.app.matrimony.entity.FamilyInfo;
+import com.app.matrimony.entity.HoioscopeDetails;
 import com.app.matrimony.entity.LifeStyleInfo;
+import com.app.matrimony.entity.ReligionInfo;
 import com.app.matrimony.enumaration.Disability;
 import com.app.matrimony.enumaration.FamilyStatus;
 import com.app.matrimony.enumaration.FamilyType;
@@ -62,6 +65,9 @@ public class BrokerCustomerDTO {
 	private BasicInfo basicInfoObj;
     private LifeStyleInfo lifeStyleInfoObj;
     private UUID addBrokerId;
+    private FamilyInfo familyInfoObj;
+    private ReligionInfo religionInfoObj;
+    private HoioscopeDetails hoioscopeDetailsObj;
 	
 
 }

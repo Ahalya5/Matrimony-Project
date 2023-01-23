@@ -55,7 +55,8 @@ public class BrokerCustomerService {
 				.name(userObj.getName()).otp(otps).isOtpVerified(userObj.getIsOtpVerified()).expiryDate(expireDate)
 				.addBrokerId(userObj.getAddBrokerId())
 				.lifeStyleInfoObj(userObj.getLifeStyleInfoObj())
-				.basicInfoObj(userObj.getBasicInfoObj())
+				.basicInfoObj(userObj.getBasicInfoObj()).familyInfoObj(userObj.getFamilyInfoObj())
+				.religionInfoObj(userObj.getReligionInfoObj()).hoioscopeDetailsObj(userObj.getHoioscopeDetailsObj())
 				.build();
 		brokerCustomerRepository.saveAndFlush(brokerContomer);
 		

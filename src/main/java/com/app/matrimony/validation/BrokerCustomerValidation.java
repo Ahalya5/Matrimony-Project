@@ -187,7 +187,9 @@ public class BrokerCustomerValidation {
 					.about(request.getAbout()).expiryDate(request.getExpiryDate())
 					.addBrokerId(request.getAddBrokerId())
 					.basicInfoObj(request.getBasicInfoObj())
-					.lifeStyleInfoObj(request.getLifeStyleInfoObj()).build();
+					.lifeStyleInfoObj(request.getLifeStyleInfoObj())
+					.familyInfoObj(request.getFamilyInfoObj()).religionInfoObj(request.getReligionInfoObj())
+					.hoioscopeDetailsObj(request.getHoioscopeDetailsObj()).build();
 
 		} else {
 			user.setUserName(request.getUserName());
@@ -226,6 +228,9 @@ public class BrokerCustomerValidation {
 			user.setAbout(request.getAbout());
 			user.setBasicInfoObj(request.getBasicInfoObj());
 			user.setLifeStyleInfoObj(request.getLifeStyleInfoObj());
+			user.setFamilyInfoObj(request.getFamilyInfoObj());
+			user.setReligionInfoObj(request.getReligionInfoObj());
+			user.setHoioscopeDetailsObj(request.getHoioscopeDetailsObj());
 			
 		}
 		result.setObject(user);

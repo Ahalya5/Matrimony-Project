@@ -183,5 +183,17 @@ public class BrokerCustomer extends RecordModifier implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "life_style_info_id")
 	private LifeStyleInfo lifeStyleInfoObj;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "family_info_id")
+	private FamilyInfo familyInfoObj;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "religion_info_id")
+	private ReligionInfo religionInfoObj;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "hoioscope_details_id")
+	private HoioscopeDetails hoioscopeDetailsObj;
 
 }

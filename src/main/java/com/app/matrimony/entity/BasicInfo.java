@@ -33,7 +33,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-@Table(name = "basic_info")
+@Table(name = "mat_basic_info")
 public class BasicInfo extends RecordModifier implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
